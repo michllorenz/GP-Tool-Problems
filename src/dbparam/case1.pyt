@@ -73,18 +73,62 @@ class ToolA(object):
         arcpy.AddMessage(f"Workspace: {arcpy.env.workspace}")
         arcpy.AddMessage(f"packageWorkspace: {arcpy.env.packageWorkspace}")
 
-        arcpy.AddMessage("Path as it is")
+        arcpy.AddMessage("Automatic workspace replacements")
 
-        try:
-            arcpy.env.workspace = self.config['db-sde']
-            arcpy.AddMessage(arcpy.env.workspace)
-        except Exception as e:
-            arcpy.AddError(e)
-        try:
-            arcpy.env.workspace = self.config['db-gdb']
-            arcpy.AddMessage(arcpy.env.workspace)
-        except Exception as e:
-            arcpy.AddError(e)
+        arcpy.AddMessage('folder C:\PRJ\GP-Tool-Problems\GP Problems\cases.gdb exits')
+        arcpy.env.workspace = 'cases.gdb'
+        arcpy.AddMessage(arcpy.env.workspace)
+        arcpy.env.workspace = 'cases.gdb'
+        arcpy.AddMessage(arcpy.env.workspace)
+        arcpy.env.workspace = 'cases.gdb'
+        arcpy.AddMessage(arcpy.env.workspace)
+        arcpy.env.workspace = 'cases.gdb'
+        arcpy.AddMessage(arcpy.env.workspace)
+
+        arcpy.AddMessage('SDE connection file sql-cases.sde exists')
+        arcpy.env.workspace = 'sql-cases.sde'
+        arcpy.AddMessage(arcpy.env.workspace)
+        arcpy.env.workspace = 'sql-cases.sde'
+        arcpy.AddMessage(arcpy.env.workspace)
+        arcpy.env.workspace = 'sql-cases.sde'
+        arcpy.AddMessage(arcpy.env.workspace)
+        arcpy.env.workspace = 'sql-cases.sde'
+        arcpy.AddMessage(arcpy.env.workspace)
+
+        arcpy.AddMessage('Relativ path with no sub folder ..\\..\\cases.gdb')
+        arcpy.env.workspace = '..\\..\\cases.gdb'
+        arcpy.AddMessage(arcpy.env.workspace)
+        arcpy.env.workspace = '..\\..\\cases.gdb'
+        arcpy.AddMessage(arcpy.env.workspace)
+        arcpy.env.workspace = '..\\..\\cases.gdb'
+        arcpy.AddMessage(arcpy.env.workspace)
+        arcpy.env.workspace = '..\\..\\cases.gdb'
+        arcpy.AddMessage(arcpy.env.workspace)
+
+        arcpy.AddMessage('Relativ path with sub folder ..\\..\\data\\cases.gdb')
+        arcpy.env.workspace = '..\\..\\data\\cases.gdb'
+        arcpy.AddMessage(arcpy.env.workspace)
+        arcpy.env.workspace = '..\\..\\data\\cases.gdb'
+        arcpy.AddMessage(arcpy.env.workspace)
+        arcpy.env.workspace = '..\\..\\data\\cases.gdb'
+        arcpy.AddMessage(arcpy.env.workspace)
+        arcpy.env.workspace = '..\\..\\data\\cases.gdb'
+        arcpy.AddMessage(arcpy.env.workspace)
+
+        arcpy.AddMessage('Relativ path with sub folder ..\\..\\data\\sql-cases.sde')
+        arcpy.env.workspace = '..\\..\\data\\sql-cases.sde'
+        arcpy.AddMessage(arcpy.env.workspace)
+        arcpy.env.workspace = '..\\..\\data\\sql-cases.sde'
+        arcpy.AddMessage(arcpy.env.workspace)
+        arcpy.env.workspace = '..\\..\\data\\sql-cases.sde'
+        arcpy.AddMessage(arcpy.env.workspace)
+        arcpy.env.workspace = '..\\..\\data\\sql-cases.sde'
+        arcpy.AddMessage(arcpy.env.workspace)
+
+
+
+
+
 
         arcpy.AddMessage("Relative path converted to absolute path")
         try:
