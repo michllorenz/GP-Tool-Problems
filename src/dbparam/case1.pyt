@@ -1,6 +1,3 @@
-import json
-import os
-
 import arcpy
 
 
@@ -27,20 +24,7 @@ class ToolA(object):
         self.label = "Case 1"
         self.description = "Test with relative paths"
         self.canRunInBackground = False
-
-        config = self._read_configfile()
         self.config = dict(self.DEFAULT_CONFIG)
-        self.config.update(config)  # does not work with arcmap
-
-    @staticmethod
-    def _read_configfile():
-        try:
-            configfile = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'case1.json')
-            with open(configfile, 'r') as f:
-                return json.loads(f.read())
-        except Exception as e:
-            arcpy.AddError('Failed reading config file. {0}'.format(e))
-            return e
 
     def getParameterInfo(self):
         """Define parameter definitions
@@ -124,24 +108,6 @@ class ToolA(object):
         arcpy.AddMessage(arcpy.env.workspace)
         arcpy.env.workspace = '..\\..\\data\\sql-cases.sde'
         arcpy.AddMessage(arcpy.env.workspace)
-
-
-
-
-
-
-        arcpy.AddMessage("Relative path converted to absolute path")
-        try:
-            arcpy.env.workspace = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), self.config['db-sde']))
-            arcpy.AddMessage(arcpy.env.workspace)
-        except Exception as e:
-            arcpy.AddError(e)
-        try:
-            arcpy.env.workspace = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), self.config['db-gdb']))
-            arcpy.AddMessage(arcpy.env.workspace)
-        except Exception as e:
-            arcpy.AddError(e)
-        return
 
 
 if __name__ == '__main__':
