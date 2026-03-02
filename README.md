@@ -38,6 +38,19 @@ C:\PRJ\GP-Tool-Problems\GP Problems\..\data\cases.gdb
 Relative path converted to absolute path
 C:\PRJ\GP-Tool-Problems\data\sql-cases.sde
 C:\PRJ\GP-Tool-Problems\data\cases.gdb
+
+
+
+Workspace: C:\PRJ\GP-Tool-Problems\GP Problems\GP Problems.gdb
+packageWorkspace: C:\PRJ\GP-Tool-Problems\src\dbparam
+Path as it is
+C:\PRJ\GP-Tool-Problems\GP Problems\GP Problems.gdb\..\..\data\sql-cases.sde
+C:\PRJ\GP-Tool-Problems\GP Problems\GP Problems.gdb\..\..\data\sql-cases.sde\..\..\data\cases.gdb
+Relative path converted to absolute path
+C:\PRJ\GP-Tool-Problems\data\sql-cases.sde
+C:\PRJ\GP-Tool-Problems\data\cases.gd
+
+
 ```
 Warning as expected, it should be copied to server.  
 ![img.png](doc/img.png)

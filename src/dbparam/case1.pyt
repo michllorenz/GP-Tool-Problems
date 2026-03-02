@@ -1,7 +1,3 @@
-# -*- coding: utf-8 -*-
-import json
-import os
-
 import arcpy
 
 
@@ -28,26 +24,8 @@ class ToolA(object):
         self.label = "Case 1"
         self.description = "Test with relative paths"
         self.canRunInBackground = False
-
         self.config = dict(self.DEFAULT_CONFIG)
-        try:
-            config = self._read_configfile()
-            self.config.update(config)  # does not work with arcmap
-        except Exception as e:
-            arcpy.AddWarning(f"Could not update Configuration: {str(e)}")
 
-    @staticmethod
-    def _read_configfile():
-        try:
-            configfile = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'case1.json')
-            arcpy.AddMessage(f'reading config from {configfile}')
-            with open(configfile, 'r') as f:
-                return json.loads(f.read())
-        except Exception as e:
-            arcpy.AddError('Failed reading config file. {0}'.format(e))
-            return e
-
-    # region Interface methods (not used)
     def getParameterInfo(self):
         """Define parameter definitions
         handles the parameters from the Toolboxwindow
@@ -72,12 +50,6 @@ class ToolA(object):
         """Modify the messages created by internal validation for each tool
         parameter.  This method is called after internal validation."""
         return
-    
-    def postExecute(self, parameters):
-        """This method takes place after outputs are processed and
-        added to the display."""
-        return
-    #endregion
 
     def execute(self, parameters, messages):
         """The source code of the tool."""
@@ -85,33 +57,57 @@ class ToolA(object):
         arcpy.AddMessage(f"Workspace: {arcpy.env.workspace}")
         arcpy.AddMessage(f"packageWorkspace: {arcpy.env.packageWorkspace}")
 
-        arcpy.AddMessage("Path as it is")
+        arcpy.AddMessage("Automatic workspace replacements")
 
-        try:
-            arcpy.AddMessage(f"db-sde: {self.config['db-sde']}")
-            arcpy.env.workspace = self.config['db-sde']
-            arcpy.AddMessage(arcpy.env.workspace)
-        except Exception as e:
-            arcpy.AddError(e)
-        try:
-            arcpy.AddMessage(f"db-gdb: {self.config['db-gdb']}")
-            arcpy.env.workspace = self.config['db-gdb']
-            arcpy.AddMessage(arcpy.env.workspace)
-        except Exception as e:
-            arcpy.AddError(e)
+        arcpy.AddMessage('folder C:\PRJ\GP-Tool-Problems\GP Problems\cases.gdb exits')
+        arcpy.env.workspace = 'cases.gdb'
+        arcpy.AddMessage(arcpy.env.workspace)
+        arcpy.env.workspace = 'cases.gdb'
+        arcpy.AddMessage(arcpy.env.workspace)
+        arcpy.env.workspace = 'cases.gdb'
+        arcpy.AddMessage(arcpy.env.workspace)
+        arcpy.env.workspace = 'cases.gdb'
+        arcpy.AddMessage(arcpy.env.workspace)
 
-        arcpy.AddMessage("Relative path converted to absolute path")
-        try:
-            arcpy.env.workspace = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), self.config['db-sde']))
-            arcpy.AddMessage(arcpy.env.workspace)
-        except Exception as e:
-            arcpy.AddError(e)
-        try:
-            arcpy.env.workspace = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), self.config['db-gdb']))
-            arcpy.AddMessage(arcpy.env.workspace)
-        except Exception as e:
-            arcpy.AddError(e)
-        return
+        arcpy.AddMessage('SDE connection file sql-cases.sde exists')
+        arcpy.env.workspace = 'sql-cases.sde'
+        arcpy.AddMessage(arcpy.env.workspace)
+        arcpy.env.workspace = 'sql-cases.sde'
+        arcpy.AddMessage(arcpy.env.workspace)
+        arcpy.env.workspace = 'sql-cases.sde'
+        arcpy.AddMessage(arcpy.env.workspace)
+        arcpy.env.workspace = 'sql-cases.sde'
+        arcpy.AddMessage(arcpy.env.workspace)
+
+        arcpy.AddMessage('Relativ path with no sub folder ..\\..\\cases.gdb')
+        arcpy.env.workspace = '..\\..\\cases.gdb'
+        arcpy.AddMessage(arcpy.env.workspace)
+        arcpy.env.workspace = '..\\..\\cases.gdb'
+        arcpy.AddMessage(arcpy.env.workspace)
+        arcpy.env.workspace = '..\\..\\cases.gdb'
+        arcpy.AddMessage(arcpy.env.workspace)
+        arcpy.env.workspace = '..\\..\\cases.gdb'
+        arcpy.AddMessage(arcpy.env.workspace)
+
+        arcpy.AddMessage('Relativ path with sub folder ..\\..\\data\\cases.gdb')
+        arcpy.env.workspace = '..\\..\\data\\cases.gdb'
+        arcpy.AddMessage(arcpy.env.workspace)
+        arcpy.env.workspace = '..\\..\\data\\cases.gdb'
+        arcpy.AddMessage(arcpy.env.workspace)
+        arcpy.env.workspace = '..\\..\\data\\cases.gdb'
+        arcpy.AddMessage(arcpy.env.workspace)
+        arcpy.env.workspace = '..\\..\\data\\cases.gdb'
+        arcpy.AddMessage(arcpy.env.workspace)
+
+        arcpy.AddMessage('Relativ path with sub folder ..\\..\\data\\sql-cases.sde')
+        arcpy.env.workspace = '..\\..\\data\\sql-cases.sde'
+        arcpy.AddMessage(arcpy.env.workspace)
+        arcpy.env.workspace = '..\\..\\data\\sql-cases.sde'
+        arcpy.AddMessage(arcpy.env.workspace)
+        arcpy.env.workspace = '..\\..\\data\\sql-cases.sde'
+        arcpy.AddMessage(arcpy.env.workspace)
+        arcpy.env.workspace = '..\\..\\data\\sql-cases.sde'
+        arcpy.AddMessage(arcpy.env.workspace)
 
 
 if __name__ == '__main__':
